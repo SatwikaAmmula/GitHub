@@ -2,11 +2,12 @@ package com.app.dao;
 import com.app.exceptions.UserExceptions;
 import com.app.model.User;
 import com.app.repository.UserRepository;
+import org.slf4j.Logger;
 
 public class UserDaoJpaImpl implements UserDao {
 
 	private UserRepository repository;
-	
+	Logger logger;
 	
 	@Override
 	public String createUser(User user) {

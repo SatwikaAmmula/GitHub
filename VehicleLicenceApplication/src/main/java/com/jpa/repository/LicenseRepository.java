@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.capgemini.model.Application;
-import com.capgemini.model.ApplicationType;
-import com.capgemini.model.Appointment;
-import com.capgemini.model.Documents;
+import com.app.model.Application;
+import com.app.model.ApplicationType;
+import com.app.model.Appointment;
+import com.app.model.Documents;
 
 @Repository
 public interface LicenseRepository extends JpaRepository<Application, Long> {

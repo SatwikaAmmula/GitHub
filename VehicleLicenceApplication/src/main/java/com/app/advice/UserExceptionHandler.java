@@ -8,10 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.app.exceptions.UserExceptions;
+
 public class UserExceptionHandler {
 
 	@ExceptionHandler()
-	public ResponseEntity<?> handleUserException(UserException ex) {
+	public ResponseEntity<?> handleUserException(UserExceptions ex) {
 		
 		Map<String, Object> errorBody = new LinkedHashMap<> ();
 		
