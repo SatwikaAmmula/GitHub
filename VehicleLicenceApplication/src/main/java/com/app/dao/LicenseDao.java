@@ -8,11 +8,17 @@ import com.app.model.Documents;
 
 public interface LicenseDao {
 	public String createLLRequest(Application llApplication);
+	/* if User is null 
+	   repository.save(llApplication)
+	  */
 	public String createDLRequest(Application dlApplication);
-	public String saveDocuments(Documents documents);
-	public String payFees(int amount);
-	public String updateSlotLLTest(Appointment appointment);
-	public String updateSlotDLTest(Appointment appointment);
+	// same as create
+	public String saveDocuments(String applicationNumber, Documents documents);
+	// check whether required documents are present
+	public String payFees(String applicationNumber,int amount);
+	
+	public String updateSlotLLTest(String applicationNumber,Appointment appointment);
+	public String updateSlotDLTest(String applicationNumber,Appointment appointment);
 	public List<Appointment> readAvailableSlots();
 	public String updateLL(Appointment llAppointment);
 	public String updateDL(Appointment dlAppointment);
