@@ -37,6 +37,7 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 	@Autowired
 	AppoinmentRepository repositoryOfAppointment;
 	
+	
 	RTOOfficerService service;
 	
 	Logger logger;
@@ -133,7 +134,7 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 		throw new ApplicationNotFoundException("Application no: " + applicationNumber +" does not exist");
 	}
 	@Override
-	public List<Appointment> readAvailableSlots() {
+	public List<Appointment> readAvailableSlots() {//need to implement
 		List<Appointment> list = repositoryOfAppointment.findAll();
 		Collection<String> availableTimeSlots = null;
 		Map<String, Date> availableSlots = new HashMap<>();
@@ -153,9 +154,11 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 	public String updateLL(Appointment llAppointment) {
 	
 		if(llAppointment.getTestResult()==TestResult.PASS) {
+			
 	return "Learner License successfully updated";
 	}
 	else
+		
 		return "Learner License successfully not updated";
 	}
 
