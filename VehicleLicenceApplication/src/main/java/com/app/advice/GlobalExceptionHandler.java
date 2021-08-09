@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.app.exceptions.ApplicationNotFoundException;
+import com.app.exceptions.ChallanNotFoundException;
 import com.app.exceptions.UserExceptions;
 
 @ControllerAdvice
@@ -25,4 +27,28 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 		
 	}
+	@ExceptionHandler
+	public ResponseEntity<?> handleApplicationNotFoundException(ApplicationNotFoundException ae) {
+		
+		Map<String, Object> errorBody = new LinkedHashMap<> ();
+		
+		errorBody.put("Error", "Cannot find the aplication with given application number!!! ");
+		errorBody.put("Timestamp", LocalDateTime.now());
+		errorBody.put("Details", ae.getMessage());
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	@ExceptionHandler
+	public ResponseEntity<?> handleChallanNotFoundException(ChallanNotFoundException ce) {
+		
+		Map<String, Object> errorBody = new LinkedHashMap<> ();
+		
+		errorBody.put("Error", "Challan doesnot exist on given Vehicle Number!!! ");
+		errorBody.put("Timestamp", LocalDateTime.now());
+		errorBody.put("Details", ce.getMessage());
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+		
+	}
+
 }
