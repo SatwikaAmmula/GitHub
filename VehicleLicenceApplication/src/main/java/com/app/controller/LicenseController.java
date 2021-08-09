@@ -41,7 +41,7 @@ public class LicenseController {
 
 	@PostMapping
 	public ResponseEntity<String> applyForDL(@Valid @RequestBody Application dlApplication){
-	String str = service.applyForLL(dlApplication);
+	String str = service.applyForDL(dlApplication);
 	if(str == "application "+dlApplication.getApplicationNumber() + "already exists") 
 		return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
 	

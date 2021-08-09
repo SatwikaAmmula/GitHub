@@ -18,7 +18,7 @@ import com.app.model.Documents;
 import com.app.repository.ChallanRepository;
 
 @Service
-public class LicenseServieImpl implements LicenseService {
+public class LicenseServiceImpl implements LicenseService {
 
 	@Autowired
 	LicenseDao dao;
@@ -37,7 +37,7 @@ public class LicenseServieImpl implements LicenseService {
 	@Override
 	public String applyForDL(Application dlApplication) {
 
-		return dao.createLLRequest(dlApplication);
+		return dao.createDLRequest(dlApplication);
 		 
 	}
 
@@ -92,8 +92,8 @@ public class LicenseServieImpl implements LicenseService {
 
 	@Override
 	public List<Appointment> getAvailableSlots() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Appointment> list = dao.readAvailableSlots();
+		return list;
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class LicenseServieImpl implements LicenseService {
 	
 	@Override
 	public String renewDL(Application dlApplication) {
-		String str= dao.updateLL(dlApplication.getAppointment());
+		String str= dao.updateDL(dlApplication.getAppointment());
 		if(str == "Driving License successfully updated") {
 			dlApplication.setStatus(ApplicationStatus.APPROVED);
 		}
