@@ -8,6 +8,5 @@ public interface UserService {
 	public String changePassword(User user);
 	public String forgotPassword(User user);
 	public String generateOtp();
-	
 	public String sendOtp();
 }

@@ -11,8 +11,13 @@ public class UserDaoJpaImpl implements UserDao {
 	
 	@Override
 	public String createUser(User user) {
-		
-		return null;
+		 String username = user.getEmail();
+		 if(!repository.existsById(username)){  
+	            return "User registered sucessfully";
+	        }  
+		 else		
+		throw new UserExceptions("User already exists, Login OR Check the entered details");
+	
 	}
 
 	@Override
