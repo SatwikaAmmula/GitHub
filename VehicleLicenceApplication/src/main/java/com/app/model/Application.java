@@ -1,5 +1,6 @@
 package com.app.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -9,9 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "application")
+
 public class Application {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +24,7 @@ public class Application {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user")
 	private Applicant applicant;
-	private Date applicationDate;
+	private LocalDate applicationDate;
 	private RTOOffice rtoOffice;
 	private ApplicationType type;
 	
@@ -57,10 +61,10 @@ public class Application {
 	public void setApplicant(Applicant applicant) {
 		this.applicant = applicant;
 	}
-	public Date getApplicationDate() {
+	public LocalDate getApplicationDate() {
 		return applicationDate;
 	}
-	public void setApplicationDate(Date applicationDate) {
+	public void setApplicationDate(LocalDate applicationDate) {
 		this.applicationDate = applicationDate;
 	}
 	public RTOOffice getRtoOffice() {
@@ -117,6 +121,26 @@ public class Application {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+
+	public Application(String applicationNumber, Applicant applicant, LocalDate applicationDate, RTOOffice rtoOffice,
+			ApplicationType type, @NotNull(message = "Documents are Required") Documents documents,
+			String modeOfPayment, double amountPaid, String paymentStatus, Appointment appointment,
+			ApplicationStatus status, String remarks) {
+		super();
+		this.applicationNumber = applicationNumber;
+		this.applicant = applicant;
+		this.applicationDate = applicationDate;
+		this.rtoOffice = rtoOffice;
+		this.type = type;
+		this.documents = documents;
+		this.modeOfPayment = modeOfPayment;
+		this.amountPaid = amountPaid;
+		this.paymentStatus = paymentStatus;
+		this.appointment = appointment;
+		this.status = status;
+		this.remarks = remarks;
+	}
+	
 	
 	
 }

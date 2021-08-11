@@ -1,9 +1,16 @@
 package com.app.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Challan {
 	
-	private String challanNumber;
+	@Id
 	private String vehicleNumber;
+
+	private String challanNumber;
+	
 	private double amount;
 	public String getChallanNumber() {
 		return challanNumber;

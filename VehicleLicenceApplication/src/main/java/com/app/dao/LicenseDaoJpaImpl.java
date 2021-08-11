@@ -37,10 +37,31 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 	@Autowired
 	AppoinmentRepository repositoryOfAppointment;
 	
-	
+	@Autowired
 	RTOOfficerService service;
 	
 	Logger logger;
+	
+	
+
+	public LicenseDaoJpaImpl(ApplicationRepository repositoryOfApplication) {
+		super();
+		this.repositoryOfApplication = repositoryOfApplication;
+	}
+	
+	
+
+	public LicenseDaoJpaImpl(AppoinmentRepository repositoryOfAppointment) {
+		super();
+		this.repositoryOfAppointment = repositoryOfAppointment;
+	}
+
+
+
+	public LicenseDaoJpaImpl() {
+	}
+
+
 
 	@Override
 	public String createLLRequest(Application llApplication) {

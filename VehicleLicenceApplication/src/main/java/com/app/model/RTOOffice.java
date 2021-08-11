@@ -14,6 +14,11 @@ public class RTOOffice {
 	private String rtoName;
 	
 	
+	public RTOOffice(int rtoId, String rtoName) {
+		super();
+		this.rtoId = rtoId;
+		this.rtoName = rtoName;
+	}
 	public int getRtoId() {
 		return rtoId;
 	}

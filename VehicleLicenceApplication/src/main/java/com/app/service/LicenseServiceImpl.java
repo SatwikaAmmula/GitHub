@@ -28,11 +28,18 @@ public class LicenseServiceImpl implements LicenseService {
 	
 	private Logger logger;
 	
+	public LicenseServiceImpl(LicenseDaoJpaImpl dao) {
+		super();
+		this.dao = dao;
+	}
+	
 	@Override
 	public String applyForLL(Application llApplication) {
 
 		return dao.createLLRequest(llApplication);
 	}
+
+
 
 	@Override
 	public String applyForDL(Application dlApplication) {
@@ -92,8 +99,8 @@ public class LicenseServiceImpl implements LicenseService {
 
 	@Override
 	public List<Appointment> getAvailableSlots() {
-		List<Appointment> list = dao.readAvailableSlots();
-		return list;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

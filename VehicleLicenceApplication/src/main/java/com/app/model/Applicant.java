@@ -33,7 +33,6 @@ public class Applicant {
 	@NotNull(message = "Date of Birth is Required")
 	private LocalDate dateOfBirth;
 	
-	private String placeOfBirth;
 	private String qualification;
 	
 	@NotNull(message = "Mobile Number is Required")
@@ -44,8 +43,8 @@ public class Applicant {
 	private String nationality;
 	
 	@NotNull(message = "Address is Required")
-	private String presentAddress;
-	private String permanentAddress;
+	private String address;
+	
 	
 	@NotNull(message = "Date of Birth is Required")
 	private String vehicleType;
@@ -86,12 +85,7 @@ public class Applicant {
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public String getPlaceOfBirth() {
-		return placeOfBirth;
-	}
-	public void setPlaceOfBirth(String placeOfBirth) {
-		this.placeOfBirth = placeOfBirth;
-	}
+	
 	public String getQualification() {
 		return qualification;
 	}
@@ -116,17 +110,11 @@ public class Applicant {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-	public String getPresentAddress() {
-		return presentAddress;
+	public String getAddress() {
+		return address;
 	}
-	public void setPresentAddress(String presentAddress) {
-		this.presentAddress = presentAddress;
-	}
-	public String getPermanentAddress() {
-		return permanentAddress;
-	}
-	public void setPermanentAddress(String permanentAddress) {
-		this.permanentAddress = permanentAddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getVehicleType() {
 		return vehicleType;
@@ -144,6 +132,32 @@ public class Applicant {
 		return challan;
 	}
 	public void setChallan(Challan challan) {
+		this.challan = challan;
+	}
+	public Applicant(User user,
+			@NotNull(message = "First Name is Required") @Length(min = 5, max = 15, message = "Length of name should be between 5 and 15") String firstName,
+			@NotNull(message = "First Name is Required") @Length(min = 5, max = 15, message = "Length of name should be between 5 and 15") String lastName,
+			@NotNull(message = "Gender is Required") Gender gender,
+			@NotNull(message = "Date of Birth is Required") LocalDate dateOfBirth, String qualification,
+			@NotNull(message = "Mobile Number is Required") String mobile,
+			@NotNull(message = "Email Id is Required") String email,
+			@NotNull(message = "Nationality is Required") String nationality,
+			@NotNull(message = "Address is Required") String address,
+			@NotNull(message = "Date of Birth is Required") String vehicleType,
+			@NotNull(message = "Date of Birth is Required") String vehicleNumber, Challan challan) {
+		super();
+		this.user = user;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.qualification = qualification;
+		this.mobile = mobile;
+		this.email = email;
+		this.nationality = nationality;
+		this.address = address;
+		this.vehicleType = vehicleType;
+		this.vehicleNumber = vehicleNumber;
 		this.challan = challan;
 	}
 	

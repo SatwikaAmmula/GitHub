@@ -1,5 +1,6 @@
 package com.app.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -14,11 +15,11 @@ public class DrivingLicense {
 	private String drivingLicenseNumber;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user")
+	@JoinColumn(name = "applicationNumber")
 	private Application application;
 	
-	private Date dateOfIssue;
-	private Date validTill;
+	private LocalDate dateOfIssue;
+	private LocalDate validTill;
 	private RTOOffice issuedBy;
 	
 	
@@ -34,16 +35,16 @@ public class DrivingLicense {
 	public void setApplication(Application application) {
 		this.application = application;
 	}
-	public Date getDateOfIssue() {
+	public LocalDate getDateOfIssue() {
 		return dateOfIssue;
 	}
-	public void setDateOfIssue(Date dateOfIssue) {
+	public void setDateOfIssue(LocalDate dateOfIssue) {
 		this.dateOfIssue = dateOfIssue;
 	}
-	public Date getValidTill() {
+	public LocalDate getValidTill() {
 		return validTill;
 	}
-	public void setValidTill(Date validTill) {
+	public void setValidTill(LocalDate validTill) {
 		this.validTill = validTill;
 	}
 	public RTOOffice getIssuedBy() {
