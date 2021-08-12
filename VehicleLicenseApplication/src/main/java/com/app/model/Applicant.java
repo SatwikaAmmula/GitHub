@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -37,8 +35,8 @@ public class Applicant {
 	@NotNull(message = "First Name is Required.")
 	@Length(min = 5, max = 15, message = "Length of name should be between 5 and 15")
 	private String lastName;
-	
-	//@Enumerated(EnumType.STRING)
+
+	// @Enumerated(EnumType.STRING)
 	private Gender gender;
 
 	@NotNull(message = "Date of Birth is Required.")
@@ -53,9 +51,9 @@ public class Applicant {
 	@NotNull(message = "Address is Required.")
 	private String address;
 
-	//@Enumerated(EnumType.STRING)
+	// @Enumerated(EnumType.STRING)
 	private VehicleType vehicleType;
-	
+
 	@NotNull(message = "Vehicle number is Mandatory.")
 	@Pattern(regexp = "^[M]{1}[H]{1}[ -][0-9]{1,2}[ -][A-Z]{1,2}[ -][0-9]{1,4}$")
 	private String vehicleNumber;
@@ -140,7 +138,6 @@ public class Applicant {
 		this.address = address;
 	}
 
-	
 	public VehicleType getVehicleType() {
 		return vehicleType;
 	}
@@ -163,6 +160,6 @@ public class Applicant {
 
 	public void setChallans(List<Challan> challans) {
 		this.challans = challans;
-	
+
 	}
 }

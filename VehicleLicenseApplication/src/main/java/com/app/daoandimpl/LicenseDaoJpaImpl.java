@@ -1,16 +1,5 @@
 package com.app.daoandimpl;
 
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +12,10 @@ import com.app.model.Application;
 import com.app.enums.ApplicationStatus;
 
 import com.app.model.Appointment;
-import com.app.model.DrivingLicense;
 import com.app.repository.ApplicationRepository;
 import com.app.repository.AppointmentRepository;
 import com.app.repository.DrivingLicenseRepository;
-import com.app.service.RTOOfficerService;
+import com.app.serviceandimpl.RTOOfficerService;
 
 @Component
 public class LicenseDaoJpaImpl implements LicenseDao {
@@ -121,7 +109,7 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 	}
 
 	@Override
-	public String updateSlotLLTest(int applicationNumber, Appointment appointment) {
+	public String updateSlotLLTest(int applicationNumber, Appointment appointment) { //implementaion of update slot for LL test method
 		
 			if(repositoryOfApplication.existsById(applicationNumber)){
 			Application application=repositoryOfApplication.getOne(applicationNumber);
@@ -137,7 +125,7 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 			throw new ApplicationNotFoundException("Application doen't exist");
 	}
 	@Override
-	public String updateSlotDLTest(int applicationNumber, Appointment appointment) {
+	public String updateSlotDLTest(int applicationNumber, Appointment appointment) {		//implementaion of update slot for DL test method
 		if(repositoryOfApplication.existsById(applicationNumber)){
 			Application application=repositoryOfApplication.getOne(applicationNumber);
 			if(repositoryOfAppointment.existsById(appointment.getAppointmentNumber())) {
@@ -153,7 +141,7 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 	}
 
 	@Override
-	public String cancelAppointment(String appointmentNumber) {
+	public String cancelAppointment(String appointmentNumber) {		//implementaion of cancel appointment method
 		if (repositoryOfAppointment.existsById(appointmentNumber)) {
 			repositoryOfAppointment.deleteById(appointmentNumber);
 		return "Appointment cancelled successfully";

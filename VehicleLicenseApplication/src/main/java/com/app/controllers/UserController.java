@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.app.model.User;
-import com.app.service.UserService;
+import com.app.serviceandimpl.UserService;
 
 @RestController
 @RequestMapping("/user")
@@ -22,52 +21,53 @@ public class UserController {
 
 	@Autowired
 	UserService service;
-	
+
 	@PostMapping(value = "/registration")
-	public ResponseEntity<String> userRegistration(@Valid @RequestBody User user) {
+	public ResponseEntity<String> userRegistration(@Valid @RequestBody User user) { // handling client data from
+																					// swagger(client)
 		String str = service.userRegistration(user);
-		if(str == "User already exists, Login OR Check the entered details") 
+		if (str == "User already exists, Login OR Check the entered details")
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
 		else
-		return new ResponseEntity<String>(str, HttpStatus.CREATED) ;
+			return new ResponseEntity<String>(str, HttpStatus.CREATED);
 	}
-	
+
 	@PostMapping(value = "/login")
 	public ResponseEntity<String> userLogin(@Valid @RequestBody User user) {
 		String str = service.userLogin(user);
-		if(str == "Check your username or password:") 
+		if (str == "Check your username or password:")
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
 		else
-		return new ResponseEntity<String>(str, HttpStatus.ACCEPTED) ;
+			return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
 	}
+
 	@PostMapping(value = "/changePassword")
 	public ResponseEntity<String> changePassword(@Valid @RequestBody User user) {
 		String str = service.changePassword(user);
-		if(str == "Password changed successfully") 
-			return new ResponseEntity<String>(str, HttpStatus.ACCEPTED) ;
-			
+		if (str == "Password changed successfully")
+			return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
+
 		else
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@PostMapping(value = "/forgotPassword")
 	public ResponseEntity<String> forgotPassword(@Valid @RequestBody User user) {
 		String str = service.forgotPassword(user);
-		if(str == "Enter a valid username.") 
+		if (str == "Enter a valid username.")
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
 		else
-		return new ResponseEntity<String>(str, HttpStatus.ACCEPTED) ;
+			return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
 	}
-	
-	
-	public ResponseEntity<String> generateOtp(){
-		return null;
+
+	public char[] generateOtp() {
+		return service.generateOtp(4);
 	}
-	
+
 	@GetMapping("/viewall")
-	public List<User> viewAllUsers(){
+	public List<User> viewAllUsers() {
 		List<User> users = service.getAllUsers();
-		
-		return users; 
+
+		return users;
 	}
 }

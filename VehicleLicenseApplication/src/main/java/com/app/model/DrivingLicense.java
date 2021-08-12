@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class DrivingLicense {
 	@Id
-	private String drivingLicenseNumber; // give a regex (start with MH)
+	private String drivingLicenseNumber;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "applicationNumber")

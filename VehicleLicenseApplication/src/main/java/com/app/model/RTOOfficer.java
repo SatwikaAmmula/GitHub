@@ -16,9 +16,9 @@ public class RTOOfficer {
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Invalid username.")
 	private String email;
 	@NotNull(message = "Password cannot be empty.")
-	@Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$", message = "password doesnot match the criteria.")
+	@Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}", message = "password doesnot match the criteria.")
 	private String password;
-	
+
 	public final String office = "Maharastra.";
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "officer")

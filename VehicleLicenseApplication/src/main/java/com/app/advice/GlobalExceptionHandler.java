@@ -18,7 +18,7 @@ import com.app.exceptions.UserExceptions;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(UserExceptions.class)
-	public ResponseEntity<?> handleUserException(UserExceptions ex) {
+	public ResponseEntity<?> handleUserException(UserExceptions ex) {	//user exceptions are handled
 		
 		Map<String, Object> errorBody = new LinkedHashMap<> ();
 		
@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
 		
 	}
 	@ExceptionHandler(ApplicationNotFoundException.class)
-	public ResponseEntity<?> handleApplicationNotFoundException(ApplicationNotFoundException ae) {
+	public ResponseEntity<?> handleApplicationNotFoundException(ApplicationNotFoundException ae) { 	//Application exceptions are handled
 		
 		Map<String, Object> errorBody = new LinkedHashMap<> ();
 		
@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(ChallanNotFoundException.class)
-	public ResponseEntity<?> handleChallanNotFoundException(ChallanNotFoundException ce) {
+	public ResponseEntity<?> handleChallanNotFoundException(ChallanNotFoundException ce) {		//Challan exceptions are handled
 		
 		Map<String, Object> errorBody = new LinkedHashMap<> ();
 		
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
 		
 	}
 	@ExceptionHandler(AppointmentNotFoundException.class)
-	public ResponseEntity<?> handleAppointmentNotFoundException(AppointmentNotFoundException ae) {
+	public ResponseEntity<?> handleAppointmentNotFoundException(AppointmentNotFoundException ae) { 	//Appointment exceptions are handled
 		
 		Map<String, Object> errorBody = new LinkedHashMap<> ();
 		

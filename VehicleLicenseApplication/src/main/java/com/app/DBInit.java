@@ -60,12 +60,12 @@ public class DBInit implements CommandLineRunner {
 
 		logger.info("Vehicle License datbase created");
 
-		User user = new User();
+		User user = new User();							//user data 
 		user.setEmail("chinnusatwika@gmail.com");
 		user.setPassword("Satwika@123");
 		userRepository.save(user);
 
-		RTOOfficer officer = new RTOOfficer();
+		RTOOfficer officer = new RTOOfficer();			//rto officer data
 		officer.setUsername("Sridhar Ammula");
 		officer.setEmail("Sridhar_ain@yahoo.com");
 		officer.setPassword("Sridhar@123");
@@ -79,10 +79,10 @@ public class DBInit implements CommandLineRunner {
 		appointment1.setTestDate(LocalDate.of(2021, 8, 30));
 		appointment1.setTimeSlot("9:00");
 		appointment1.setTestResult(TestResult.PASS);
-		
-		Application application1 = new Application();
+
+		Application application1 = new Application();		//applicant data(user)
 		application1.setApplicationNumber(100);
-		
+
 		Applicant applicant1 = new Applicant();
 		applicant1.setApplicantId(100);
 		applicant1.setUser(user);
@@ -95,7 +95,7 @@ public class DBInit implements CommandLineRunner {
 		applicant1.setAddress("Mumbai, Maharashtra");
 		applicant1.setVehicleType(VehicleType.MotorCycleWithoutGear);
 		applicant1.setVehicleNumber("MH 43 BM 4895");
-	
+
 		applicantRepository.save(applicant1);
 		application1.setApplicant(applicant1);
 		application1.setApplicationDate(LocalDate.now());
@@ -107,24 +107,24 @@ public class DBInit implements CommandLineRunner {
 		application1.setAmountPaid(500);
 		application1.setPaymentStatus("Paid");
 		applicationRepository.save(application1);
-		
+
 		appointment1.setApplication(application1);
 		appointmentRepository.save(appointment1);
-		
+
 		appointments.add(appointment1);
 
-		officer.setAppointments(appointments);  
+		officer.setAppointments(appointments);
 
-		rtoRepository.save(officer);
+		rtoRepository.save(officer);						
 
-		DrivingLicense license = new DrivingLicense();
+		DrivingLicense license = new DrivingLicense();			//DL creation by rto officer
 		license.setDrivingLicenseNumber("MH2312");
 		license.setApplication(application1);
 		license.setDateOfIssue(LocalDate.now());
 		license.setValidTill(LocalDate.now().plusMonths(6));
 		dlRepository.save(license);
 
-		Challan ch = new Challan();
+		Challan ch = new Challan();								//check and set challan data
 		ch.setApplicant(applicant1);
 		ch.setChallanNumber(1012);
 		ch.setVehicleNumber("MH 43 BM 4895");

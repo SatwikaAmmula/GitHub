@@ -23,10 +23,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Application {
 	@Id
 	private int applicationNumber;
-	
+
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name="appointmentnumber")
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "appointmentnumber")
 
 	private Appointment appointment;
 
@@ -35,7 +35,7 @@ public class Application {
 	private Applicant applicant;
 	@JsonIgnore
 	private LocalDate applicationDate = LocalDate.now();
-	
+
 	@Enumerated(EnumType.STRING)
 	private ApplicationType type;
 
@@ -147,6 +147,5 @@ public class Application {
 	public void setAppointment(Appointment appointment) {
 		this.appointment = appointment;
 	}
-	
 
 }

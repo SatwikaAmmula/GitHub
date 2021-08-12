@@ -15,9 +15,9 @@ import javax.validation.constraints.Pattern;
 public class User {
 
 	@Id
-	//@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$", message = "Invalid emailId.")
+	@Pattern(regexp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-z]+\\.)+[a-z]{2,7}$", message = "Invalid emailId.")
 	private String email;
-	//@Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20)", message = "password doesnot match the criteria.")
+	@Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$", message = "Password doesnot match the criteria.")
 	private String password;
 
 	public User() {

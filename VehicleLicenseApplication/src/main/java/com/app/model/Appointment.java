@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +19,7 @@ public class Appointment {
 	// scope
 	@Id
 	private String appointmentNumber;
-	
+
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "applicationNumber")
@@ -29,7 +27,7 @@ public class Appointment {
 
 	private LocalDate testDate;
 	private String timeSlot; // (need to work)
-	
+
 	private TestResult testResult;
 	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -67,7 +65,6 @@ public class Appointment {
 	public void setTestDate(LocalDate testDate) {
 		this.testDate = testDate;
 	}
-
 
 	public String getTimeSlot() {
 		return timeSlot;

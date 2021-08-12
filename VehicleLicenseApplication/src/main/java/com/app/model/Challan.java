@@ -8,15 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Challan {
 
 	@Id
 	private int challanNumber;
-	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "app_id")
 	private Applicant applicant;
 	@NotNull
@@ -55,7 +53,5 @@ public class Challan {
 	public void setVehicleNumber(String vehicleNumber) {
 		this.vehicleNumber = vehicleNumber;
 	}
-
-	
 
 }

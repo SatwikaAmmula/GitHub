@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.app.model.RTOOfficer;
 
 @Repository
-public interface RTOOfficerRepository extends JpaRepository<RTOOfficer,String> {
+public interface RTOOfficerRepository extends JpaRepository<RTOOfficer, String> {
 
 }

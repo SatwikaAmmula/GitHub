@@ -1,25 +1,22 @@
 package com.app.daoandimpl;
 
-import java.util.List;
-
 import com.app.model.Application;
 import com.app.model.Appointment;
-import com.app.model.DrivingLicense;
 
 public interface LicenseDao {
-	public String createLLRequest(Application llApplication);
+	public String createLLRequest(Application llApplication);			//method to create new LL request
 
-	public String createDLRequest(Application dlApplication);
+	public String createDLRequest(Application dlApplication);			//method to create new DL request
 
-	public String updateLL(Application llApplication);
+	public String updateLL(Application llApplication);					//method to update LL
 
-	public String updateDL(Application llApplication);
+	public String updateDL(Application llApplication);					//method to update DL
 
-	public String payFees(int applicationNumber, int amount);
+	public String payFees(int applicationNumber, int amount);			//method to pay fees by application number
 
-	public String updateSlotLLTest(int applicationNumber,Appointment appointment);
+	public String updateSlotLLTest(int applicationNumber, Appointment appointment);		//method to update slot for LL slot
 
-	public String updateSlotDLTest(int applicationNumber,Appointment appointment);
+	public String updateSlotDLTest(int applicationNumber, Appointment appointment);		//method to update slot for DL slot
 
-	public String cancelAppointment(String appointmentNumber);
+	public String cancelAppointment(String appointmentNumber);							//method to cancel appointment
 }
