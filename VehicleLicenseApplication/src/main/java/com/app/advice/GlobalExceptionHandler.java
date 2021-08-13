@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.app.exceptions.ApplicationNotFoundException;
 import com.app.exceptions.AppointmentNotFoundException;
+import com.app.exceptions.CannotGenerateLicenseException;
 import com.app.exceptions.ChallanNotFoundException;
+import com.app.exceptions.InvalidLoginCredentialsException;
 import com.app.exceptions.UserExceptions;
 
 @ControllerAdvice
@@ -59,6 +61,28 @@ public class GlobalExceptionHandler {
 		errorBody.put("Error", "Challan doesnot exist on given Vehicle Number!!! ");
 		errorBody.put("Timestamp", LocalDateTime.now());
 		errorBody.put("Details", ae.getMessage());
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(InvalidLoginCredentialsException.class)
+	public ResponseEntity<?> handleInvalidLoginCredentialsException(InvalidLoginCredentialsException ie) { 	//Appointment exceptions are handled
+		
+		Map<String, Object> errorBody = new LinkedHashMap<> ();
+		
+		errorBody.put("Error", "Wrong Credentials!!! ");
+		errorBody.put("Timestamp", LocalDateTime.now());
+		errorBody.put("Details", ie.getMessage());
+		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(CannotGenerateLicenseException.class)
+	public ResponseEntity<?> handleCannotGenerateLicenseException(CannotGenerateLicenseException cge) { 	//Appointment exceptions are handled
+		
+		Map<String, Object> errorBody = new LinkedHashMap<> ();
+		
+		errorBody.put("Error", "Wrong Credentials!!! ");
+		errorBody.put("Timestamp", LocalDateTime.now());
+		errorBody.put("Details", cge.getMessage());
 		return new ResponseEntity<>(errorBody, HttpStatus.BAD_REQUEST);
 		
 	}

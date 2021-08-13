@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.daoandimpl.UserDao;
+import com.app.daoandimpl.UserDaoJpaImpl;
 import com.app.exceptions.UserExceptions;
 import com.app.model.User;
 import com.app.repository.UserRepository;
@@ -20,10 +21,8 @@ public class UserServiceImpl implements UserService {
 	UserRepository repository;
 
 	// constructor for mockito to create mock data.
-	public UserServiceImpl(UserDao dao, UserRepository repository) {
-		super();
-		this.dao = dao;
-		this.repository = repository;
+	public UserServiceImpl(UserDaoJpaImpl dao) {
+		this.dao=dao;
 	}
 
 	@Override

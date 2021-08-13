@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class RTOOfficer {
 	@Id
@@ -21,6 +23,7 @@ public class RTOOfficer {
 
 	public final String office = "Maharastra.";
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "officer")
 	private List<Appointment> appointments;
 

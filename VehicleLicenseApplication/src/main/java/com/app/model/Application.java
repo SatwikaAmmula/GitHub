@@ -25,7 +25,7 @@ public class Application {
 	private int applicationNumber;
 
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "appointmentnumber")
 
 	private Appointment appointment;

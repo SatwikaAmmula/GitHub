@@ -20,7 +20,6 @@ import com.app.repository.RTOOfficerRepository;
 
 @Component
 public class RTOOfficerDaoJpaImpl implements RTOOfficerDao {
-
 	@Autowired
 	RTOOfficerRepository rtoOfficer;
 	@Autowired
@@ -28,51 +27,58 @@ public class RTOOfficerDaoJpaImpl implements RTOOfficerDao {
 	@Autowired
 	DrivingLicenseRepository drivingRepo;
 
+	//RTOOfficer Login
 	@Override
-	public String login(RTOOfficer officer) {			//implementation of rto officer login method
-		List<RTOOfficer> users = rtoOfficer.findAll();
-		for (RTOOfficer other : users) {
-			if (other.equals(officer)) {
-				rtoOfficer.save(officer);
-				return "Login Successfully";
+	public String login(RTOOfficer officer) {
+		if(rtoOfficer.existsById(officer.getUsername())) {
+			RTOOfficer user = rtoOfficer.getOne(officer.getUsername());
+		
+			if(user.getPassword().equals(officer.getPassword())) {
+				return "Login Successfull";
+			}
+			else {
+				return "Check Username or password";
 			}
 		}
 		throw new UserExceptions("Check Username and Password.");
 
 	}
 
+	//List Of Pending Applications
 	@Override
-	public List<Application> getAllPendingApplications() {   		//implementation of get pending applications method
+	public List<Application> getAllPendingApplications() {
 		List<Application> list = appRepo.findAll();
 		List<Application> list2 = list.stream().filter(e -> e.getStatus() == ApplicationStatus.PENDING)
 				.collect(Collectors.toList());
 		return list2;
 	}
-
+	//List Of Rejected Applications
 	@Override
-	public List<Application> getAllRejectedApplications() {			//implementation of get rejected applications method
+	public List<Application> getAllRejectedApplications() {
 		List<Application> list = appRepo.findAll();
 		List<Application> list2 = list.stream().filter(e -> e.getStatus() == ApplicationStatus.REJECTED)
 				.collect(Collectors.toList());
 		return list2;
 	}
-
+	//List Of Approved Applications
 	@Override
-	public List<Application> getAllApprovedApplications() {			//implementation of get approved applications method
+	public List<Application> getAllApprovedApplications() {
 		List<Application> list = appRepo.findAll();
 		List<Application> list2 = list.stream().filter(e -> e.getStatus() == ApplicationStatus.APPROVED)
 				.collect(Collectors.toList());
 		return list2;
 	}
 
+	//Getting Application By ID
 	@Override
-	public Application getApplicationById(int applicationNumber) {		//implementation of getapplication by id
+	public Application getApplicationById(int applicationNumber) {
 		Application getApplication = appRepo.getOne(applicationNumber);
 		return getApplication;
 	}
 
+	//Updating Application By ID
 	@Override
-	public Application updateApplicationById(int applicationNumber) {		//implementation of updateapplication by id
+	public Application updateApplicationById(int applicationNumber) {
 		Optional<Application> updateApplication = appRepo.findById(applicationNumber);
 		Application getApplicationById = updateApplication.get();
 		Application updateApplicationById = appRepo.save(getApplicationById);
@@ -80,37 +86,46 @@ public class RTOOfficerDaoJpaImpl implements RTOOfficerDao {
 
 	}
 
+	//Creating Learning License
 	@Override
-	public DrivingLicense createLearnerLicense(int applicationNumber) {   	//implementation of create new LL method
+	public DrivingLicense createLearnerLicense(int applicationNumber) {
 		if (appRepo.existsById(applicationNumber)) {
 			Application app = appRepo.getOne(applicationNumber);
 			LocalDate issueDate = LocalDate.now();
 			DrivingLicense learningLicense = new DrivingLicense();
+			learningLicense.setDrivingLicenseNumber("MH100");
 			learningLicense.setApplication(app);
 			learningLicense.setDateOfIssue(issueDate);
 			learningLicense.setValidTill(issueDate.plusMonths(6));
-
+			
 			drivingRepo.save(learningLicense);
+			app.setStatus(ApplicationStatus.APPROVED);
+			appRepo.save(app);
 			return learningLicense;
 		}
 		throw new ApplicationNotFoundException("Application with number " + applicationNumber + " doesn't exist.");
 	}
 
+	//Creating Driving License
 	@Override
-	public DrivingLicense createDrivingLicense(int applicationNumber) {		//implementation of create new LL method
+	public DrivingLicense createDrivingLicense(int applicationNumber) {
 		if (appRepo.existsById(applicationNumber)) {
 			Application app = appRepo.getOne(applicationNumber);
 			LocalDate issueDate = LocalDate.now();
-			DrivingLicense drivingLicense = new DrivingLicense();
-			drivingLicense.setApplication(app);
-			drivingLicense.setDateOfIssue(issueDate);
-			drivingLicense.setValidTill(issueDate.plusYears(20));
-
-			drivingRepo.save(drivingLicense);
-			return drivingLicense;
+			DrivingLicense learningLicense = new DrivingLicense();
+			learningLicense.setDrivingLicenseNumber("MH100");
+			learningLicense.setApplication(app);
+			learningLicense.setDateOfIssue(issueDate);
+			learningLicense.setValidTill(issueDate.plusMonths(6));
+			
+			drivingRepo.save(learningLicense);
+			app.setStatus(ApplicationStatus.APPROVED);
+			appRepo.save(app);
+			return learningLicense;
 		}
 		throw new ApplicationNotFoundException("Application with number " + applicationNumber + " doesn't exist.");
-
 	}
 
+
 }
+

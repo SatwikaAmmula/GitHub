@@ -12,6 +12,7 @@ import com.app.model.Application;
 import com.app.enums.ApplicationStatus;
 
 import com.app.model.Appointment;
+import com.app.repository.ApplicantRepository;
 import com.app.repository.ApplicationRepository;
 import com.app.repository.AppointmentRepository;
 import com.app.repository.DrivingLicenseRepository;
@@ -28,15 +29,22 @@ public class LicenseDaoJpaImpl implements LicenseDao {
 	@Autowired
 	AppointmentRepository repositoryOfAppointment;
 
-	@Autowired
-	RTOOfficerService service;
-	@Autowired
-	DrivingLicenseRepository repository;
 	
 	Logger logger = LoggerFactory.getLogger(LicenseDaoJpaImpl.class);
 
 	public LicenseDaoJpaImpl() {
 	}
+
+	
+
+	public LicenseDaoJpaImpl(ApplicationRepository repositoryOfApplication,
+			AppointmentRepository repositoryOfAppointment) {
+		super();
+		this.repositoryOfApplication = repositoryOfApplication;
+		this.repositoryOfAppointment = repositoryOfAppointment;
+	}
+
+
 
 	@Override
 	public String createLLRequest(Application llApplication) { // Method to apply new learner license Application

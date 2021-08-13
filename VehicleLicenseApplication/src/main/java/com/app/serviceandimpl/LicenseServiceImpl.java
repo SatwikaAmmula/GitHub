@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.app.exceptions.ChallanNotFoundException;
 import com.app.model.Application;
 import com.app.daoandimpl.LicenseDao;
-
+import com.app.daoandimpl.LicenseDaoJpaImpl;
 import com.app.model.Appointment;
 import com.app.model.Challan;
 
@@ -23,11 +23,10 @@ public class LicenseServiceImpl implements LicenseService {
 	@Autowired
 	ChallanRepository repository;
 
-	// Constructor for mockito to create mock objects
-	public LicenseServiceImpl(LicenseDao dao, ChallanRepository repository) {
-		super();
+	
+	public LicenseServiceImpl(LicenseDao dao) {
 		this.dao = dao;
-		this.repository = repository;
+		
 	}
 
 	// Log the flow of the method in service.

@@ -15,6 +15,10 @@ public class UserDaoJpaImpl implements UserDao {
 	private UserRepository repository;
 	Logger logger = LoggerFactory.getLogger(LicenseDaoJpaImpl.class);
 
+	public UserDaoJpaImpl(UserRepository userRepository) {
+		this.repository=userRepository;
+	}
+
 	@Override
 	public String createUser(User user) {					//implementation of user creation method
 		logger.trace("Entered user creation method.");

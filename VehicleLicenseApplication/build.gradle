@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.example'
+group = 'com.app'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -18,13 +18,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	
-implementation 'io.springfox:springfox-swagger2:2.9.2'
-	
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
 implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
+// https://mvnrepository.com/artifact/org.mockito/mockito-all
+testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.9.0'
 	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
