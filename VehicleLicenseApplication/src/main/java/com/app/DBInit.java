@@ -60,12 +60,12 @@ public class DBInit implements CommandLineRunner {
 
 		logger.info("Vehicle License datbase created");
 
-		User user = new User();							//user data 
+		User user = new User(); // user data
 		user.setEmail("chinnusatwika@gmail.com");
 		user.setPassword("Satwika@123");
 		userRepository.save(user);
 
-		RTOOfficer officer = new RTOOfficer();			//rto officer data
+		RTOOfficer officer = new RTOOfficer(); // rto officer data
 		officer.setUsername("Sridhar Ammula");
 		officer.setEmail("Sridhar_ain@yahoo.com");
 		officer.setPassword("Sridhar@123");
@@ -80,7 +80,7 @@ public class DBInit implements CommandLineRunner {
 		appointment1.setTimeSlot("9:00");
 		appointment1.setTestResult(TestResult.PASS);
 
-		Application application1 = new Application();		//applicant data(user)
+		Application application1 = new Application(); // applicant data(user)
 		application1.setApplicationNumber(100);
 
 		Applicant applicant1 = new Applicant();
@@ -115,16 +115,16 @@ public class DBInit implements CommandLineRunner {
 
 		officer.setAppointments(appointments);
 
-		rtoRepository.save(officer);						
+		rtoRepository.save(officer);
 
-		DrivingLicense license = new DrivingLicense();			//DL creation by rto officer
+		DrivingLicense license = new DrivingLicense(); // DL creation by rto officer
 		license.setDrivingLicenseNumber("MH2312");
 		license.setApplication(application1);
 		license.setDateOfIssue(LocalDate.now());
 		license.setValidTill(LocalDate.now().plusMonths(6));
 		dlRepository.save(license);
 
-		Challan ch = new Challan();								//check and set challan data
+		Challan ch = new Challan(); // check and set challan data
 		ch.setApplicant(applicant1);
 		ch.setChallanNumber(1012);
 		ch.setVehicleNumber("MH 43 BM 4895");

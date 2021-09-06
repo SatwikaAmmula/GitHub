@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,14 +25,19 @@ import com.app.model.DrivingLicense;
 import com.app.serviceandimpl.LicenseService;
 
 @RestController
-@RequestMapping("License")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("license")
 public class LicenseController {
-
+	// handling client data from client
 	@Autowired
 	LicenseService service;
 
-	@PostMapping(value = "LL")
-	public ResponseEntity<String> applyForLL(@Valid @RequestBody Application llApplication) {  //handling client data from swagger(client) 
+	// path is
+	// http://localhost:8080/swagger-ui.html#/license-controller/applyForLLUsingPOST
+	@PostMapping(path =  "LL")
+	public ResponseEntity<String> applyForLL(@Valid @RequestBody Application llApplication) { // Given data in JSon will
+																								// be translated to java
+																								// by @RequestBody.
 		String str = service.applyForLL(llApplication);
 		if (str == "application " + llApplication.getApplicationNumber() + "already exists")
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
@@ -39,8 +45,12 @@ public class LicenseController {
 		return new ResponseEntity<String>(str, HttpStatus.CREATED);
 	}
 
+	// path is
+	// http://localhost:8080/swagger-ui.html#/license-controller/applyForDLUsingPOST
 	@PostMapping(value = "DL")
-	public ResponseEntity<String> applyForDL(@Valid @RequestBody Application dlApplication) {
+	public ResponseEntity<String> applyForDL(@Valid @RequestBody Application dlApplication) {// Given data in JSon will
+																								// be translated to java
+																								// by @RequestBody.
 		String str = service.applyForDL(dlApplication);
 		if (str == "application " + dlApplication.getApplicationNumber() + "already exists")
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
@@ -48,8 +58,11 @@ public class LicenseController {
 		return new ResponseEntity<String>(str, HttpStatus.CREATED);
 	}
 
+	// http://localhost:8080/swagger-ui.html#/license-controller/renewLLUsingPUT
 	@PutMapping(path = "updateLL")
-	public ResponseEntity<String> renewLL(@Valid @RequestBody Application application) {
+	public ResponseEntity<String> renewLL(@Valid @RequestBody Application application) {// Given data in JSon will be
+																						// translated to java by
+																						// @RequestBody.
 		String str = service.renewLL(application);
 		if (str == "DL application updated successfully") {
 			return new ResponseEntity<String>("LearnerLicense application successfully updated", HttpStatus.CREATED);
@@ -57,8 +70,11 @@ public class LicenseController {
 		throw new ApplicationNotFoundException("LL Application does not exist");
 	}
 
+	// http://localhost:8080/swagger-ui.html#/license-controller/renewDLUsingPUT
 	@PutMapping(path = "updateDL")
-	public ResponseEntity<String> renewDL(@Valid @RequestBody Application application) {
+	public ResponseEntity<String> renewDL(@Valid @RequestBody Application application) { // Given data in JSon will be
+																							// translated to java by
+																							// @RequestBody.
 		String str = service.renewDL(application);
 		if (str == "DL application updated successfully") {
 			return new ResponseEntity<String>("DrivingLicense application successfully updated", HttpStatus.CREATED);
@@ -66,6 +82,7 @@ public class LicenseController {
 		throw new ApplicationNotFoundException("DL Application does not exist");
 	}
 
+	// http://localhost:8080/swagger-ui.html#/license-controller/payFeesUsingGET
 	@GetMapping(value = "payFees/{applicationNumber}/{amount}")
 	public ResponseEntity<String> payFees(@PathVariable("applicationNumber") int applicationNumber,
 			@PathVariable("amount") int amount) {
@@ -76,6 +93,8 @@ public class LicenseController {
 		throw new ApplicationNotFoundException("Application no: " + applicationNumber + " does not exist");
 	}
 
+	// path is
+	// http://localhost:8080/swagger-ui.html#/license-controller/checkChallanByVehicleNumberUsingGET
 	@GetMapping(value = "check/{vehicleNumber}")
 	public ResponseEntity<Challan> checkChallanByVehicleNumber(@PathVariable("vehicleNumber") String vehicleNumber) {
 		Challan challan = service.checkChallanByVehicleNumber(vehicleNumber);
@@ -85,12 +104,14 @@ public class LicenseController {
 		throw new ChallanNotFoundException("No challan exists on vehicle number: " + vehicleNumber);
 	}
 
+	// http://localhost:8080/swagger-ui.html#/license-controller/payChallanByVehicleNumberUsingGET
 	@GetMapping(value = "pay/{vehicleNumber}")
 	public ResponseEntity<String> payChallanByVehicleNumber(@PathVariable("vehicleNumber") String vehicleNumber) {
 		String str = service.payChallanByVehicleNumber(vehicleNumber);
 		return new ResponseEntity<String>(str, HttpStatus.OK);
 	}
 
+	// http://localhost:8080/swagger-ui.html#/license-controller/bookSlotLLTestUsingPUT
 	@PutMapping(path = "updateSlotLLTest/{applicationNumber}")
 	public ResponseEntity<String> bookSlotLLTest(@PathVariable("applicationNumber") int applicationNumber,
 			@Valid @RequestBody Appointment appointment) {
@@ -102,6 +123,7 @@ public class LicenseController {
 		}
 	}
 
+	// http://localhost:8080/swagger-ui.html#/license-controller/bookSlotDLTestUsingPUT
 	@PutMapping(path = "updateSlotDLTest/{applicationNumber}")
 	public ResponseEntity<String> bookSlotDLTest(@PathVariable("applicationNumber") int applicationNumber,
 			@Valid @RequestBody Appointment appointment) {
@@ -112,13 +134,8 @@ public class LicenseController {
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
 	}
 
-	/*
-	 * @GetMapping(value = "email/{email}") public ResponseEntity<String>
-	 * emailFeesReceipt(@PathVariable("email") String email){ String str=
-	 * service.emailFeesReceipt(email); return new
-	 * ResponseEntity<String>(str,HttpStatus.OK); }
-	 */
-
+	// path:
+	// http://localhost:8080/swagger-ui.html#/license-controller/cancelAppointmentUsingDELETE
 	@DeleteMapping(path = "cancelAppointment/{appointmentNumber}")
 	public ResponseEntity<String> cancelAppointment(@PathVariable("appointmentNumber") String appointmentNumber) {
 		String str = service.cancelAppointment(appointmentNumber);

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,15 +17,16 @@ import com.app.model.User;
 import com.app.serviceandimpl.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("user")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
-
+	// handling client data from client
 	@Autowired
 	UserService service;
 
-	@PostMapping(value = "/registration")
-	public ResponseEntity<String> userRegistration(@Valid @RequestBody User user) { // handling client data from
-																					// swagger(client)
+	// http://localhost:8080/swagger-ui.html#/user-controller/userRegistrationUsingPOST
+	@PostMapping(value = "registration")
+	public ResponseEntity<String> userRegistration(@Valid @RequestBody User user) {
 		String str = service.userRegistration(user);
 		if (str == "User already exists, Login OR Check the entered details")
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
@@ -32,7 +34,8 @@ public class UserController {
 			return new ResponseEntity<String>(str, HttpStatus.CREATED);
 	}
 
-	@PostMapping(value = "/login")
+	// http://localhost:8080/swagger-ui.html#/user-controller/userLoginUsingPOST
+	@PostMapping(value = "login")
 	public ResponseEntity<String> userLogin(@Valid @RequestBody User user) {
 		String str = service.userLogin(user);
 		if (str == "Check your username or password:")
@@ -41,7 +44,8 @@ public class UserController {
 			return new ResponseEntity<String>(str, HttpStatus.ACCEPTED);
 	}
 
-	@PostMapping(value = "/changePassword")
+	// http://localhost:8080/swagger-ui.html#/user-controller/changePasswordUsingPOST
+	@PostMapping(value = "changePassword")
 	public ResponseEntity<String> changePassword(@Valid @RequestBody User user) {
 		String str = service.changePassword(user);
 		if (str == "Password changed successfully")
@@ -51,7 +55,8 @@ public class UserController {
 			return new ResponseEntity<String>(str, HttpStatus.BAD_REQUEST);
 	}
 
-	@PostMapping(value = "/forgotPassword")
+	// http://localhost:8080/swagger-ui.html#/user-controller/forgotPasswordUsingPOST
+	@PostMapping(value = "forgotPassword")
 	public ResponseEntity<String> forgotPassword(@Valid @RequestBody User user) {
 		String str = service.forgotPassword(user);
 		if (str == "Enter a valid username.")
@@ -64,7 +69,8 @@ public class UserController {
 		return service.generateOtp(4);
 	}
 
-	@GetMapping("/viewall")
+	// http://localhost:8080/swagger-ui.html#/user-controller/viewAllUsersUsingGET
+	@GetMapping("viewall")
 	public List<User> viewAllUsers() {
 		List<User> users = service.getAllUsers();
 

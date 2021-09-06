@@ -53,6 +53,7 @@ public class Application {
 	private String paymentStatus;
 
 	// status will be updated by RTO officer. Initially status will be PENDING
+	@JsonIgnore
 	@Enumerated(EnumType.STRING)
 	private ApplicationStatus status;
 
