@@ -1,0 +1,27 @@
+
+<div class='appointment'>
+    <form #appntForm='ngForm' (submit)='bookSlot(appntForm.value)'>
+        <div class='form-group'>
+            <label for='appointment.testDate'> Test Date </label>
+            <input id='testDate' class='form-control' type='date' ngModel name='testDate' #tdate='ngModel'
+                required>
+        </div>
+        <div *ngIf='tdate.touched && tdate.invalid' class='alert alert-danger'>
+            Select Test Date
+        </div>
+        <div class='form-group'>
+            <label for='appointment.timeSlot'> Last Name </label>
+            <input id='timeSlot' class='form-control' type='time' ngModel name='timeSlot' #tslot='ngModel'
+                required>
+        </div>
+        <div *ngIf='tslot.touched && tslot.invalid' class='alert alert-danger'>
+            Slot must not be empty;
+        </div>
+
+        <button type='submit' class='btn btn-primary btn-block'>Submit</button>
+    </form>
+    <div *ngIf='message != null' [ngClass]='msgClass'>
+       
+        {{message}}</div>
+    
+</div>

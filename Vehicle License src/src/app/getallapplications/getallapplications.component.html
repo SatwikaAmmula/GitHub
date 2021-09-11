@@ -1,0 +1,46 @@
+<div class='maindiv'>
+    <h3 style='text-align:center;'>{{header}}</h3>
+    <table class='table  table-striped table-hover' *ngIf = 'failMessage == null'>
+        <tr>
+                    <th>Application Number</th>
+                    <th> First Name </th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th> Date Of Birth </th>
+                   <th>License Type</th>
+                   <th> Nationality </th>
+                   <th>Vehicle Type</th>
+                   <th>Status</th>
+                    
+                </tr>
+            
+        <tbody>
+            <tr *ngFor = 'let application of applications' style='padding:2px'>
+                <td> {{ application.applicationNumber }} </td>
+                <td> {{ application.firstName }} </td>
+                <td> {{ application.lastName }} </td>
+                <td> {{ application.gender }} </td>
+                <td> {{ application.dateOfBirth }} </td>
+                <td> {{ application.type }} </td>
+                <td> {{ application.nationality }} </td>
+                <td>{{application.vehicleType}}</td>
+                <td>{{application.status}}</td>
+                <td>
+                  
+                    <button class='btn btn-danger' (click)='delete(application.applicationNumber)'>Modify</button>
+                   <!--<a [routerLink]="['/appointment',application.applicationNumber]" class='btn btn-primary'>Appointment</a>-->
+                    
+                </td>
+            </tr>
+        </tbody>
+
+    
+    </table>
+<div *ngIf='failMessage != null'>
+    <h3>{{failMessage}}</h3>
+</div>
+
+<p *ngIf='message != null' class='alert alert-danger' (click)='message=null'>
+    {{message}}
+</p>
+</div>

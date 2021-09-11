@@ -1,0 +1,45 @@
+<p> application </p>
+<div class='appl'>
+    <form >
+       
+            Application Number       
+            <input type='text' class='form-control' [(ngModel)]='application.applicationNumber' [ngModelOptions]="{standalone: true}" readonly>
+            First Name
+            <input type='text'  class='form-control' [(ngModel)]='application.firstName' [ngModelOptions]="{standalone: true}">
+        
+            Last Name
+            <input type='text' class='form-control' [(ngModel)]='application.lastName'[ngModelOptions]="{standalone: true}">
+        
+        
+            Date Of Birth
+            <input type='date' class='form-control' [(ngModel)]='application.dateOfBirth'[ngModelOptions]="{standalone: true}">
+        
+            License Type
+            <input type='text' class='form-control' [(ngModel)]='application.type'[ngModelOptions]="{standalone: true}">
+        
+            Nationality
+            <input type='text' class='form-control' [(ngModel)]='application.nationality'[ngModelOptions]="{standalone: true}">
+        
+            Vehicle Type: <br>
+            <label for="vehicleType"></label>
+            <select id="vehicleType" name="vehicleType" size="1" [(ngModel)]='application.vehicleType'[ngModelOptions]="{standalone: true}">
+                <option value="MotorCycleWithoutGear">MotorCycleWithoutGear</option>
+                <option value="LightMotorCycleWithGear">LightMotorCycleWithGear</option>
+                <option value="HeavyMotorVehicles">HeavyMotorVehicles</option>
+                </select>
+                <br>  
+
+            Vehicle Number
+            <input type='text' class='form-control' [(ngModel)]='application.vehicleNumber' [ngModelOptions]="{standalone: true}">
+    </form>
+    Check Details, if not correct please update
+    <table>
+        <tr>
+    <button (click)='update()' class='btn btn-success btn-block'>Update</button></tr>
+    <th>
+        <a [routerLink]="['/appointment',application.applicationNumber]" class='btn btn-primary'>Appointment</a>
+    </th>
+        </table>
+    
+    <div *ngIf='message != null' [ngClass]='msgClass' (click)="goToHome()">{{message}}! Click to go back</div>
+

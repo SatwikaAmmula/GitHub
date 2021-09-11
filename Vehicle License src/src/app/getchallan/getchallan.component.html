@@ -1,0 +1,27 @@
+<!--<p>getchallan works!</p>
+<form >
+       
+    Challan Number       
+    <input type='number' class='form-control' [(ngModel)]='challan.challanNumber' [ngModelOptions]="{standalone: true}"readonly>
+    vehicleNumber
+    <input type='text'  class='form-control' [(ngModel)]='challan.vehicleNumber'[ngModelOptions]="{standalone: true}" readonly>
+    Fine
+    <input type='number' class='form-control' [(ngModel)]='challan.amount' [ngModelOptions]="{standalone: true}"readonly>
+    </form>-->
+
+    <div class='challan'>
+        <table>
+            <tr>
+                <td>Challan Number</td>
+                <td><input type='number' class='form-control' [(ngModel)]='challan.challanNumber' readonly></td>
+            </tr>
+            <tr>
+                <td>Vehicle Number </td>
+                <td><input type='text'  class='form-control' [(ngModel)]='challan.vehicleNumber'></td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td><input type='number' class='form-control' [(ngModel)]='challan.amount'></td>
+            </tr>
+            </table>
+            </div>

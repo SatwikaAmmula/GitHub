@@ -1,0 +1,39 @@
+<p>license works!</p>
+<h2>Learner's License</h2>
+<h3>Need for a Driving License</h3>
+<div>
+    <p>No person shall drive a motor vehicle in any public 
+        place unless he holds an effective driving licence 
+        issued to him by the Licensing Authority, authorising him to drive the vehicle.</p>
+</div>
+<h3>Age limit to obtain Driving Licence</h3>
+<div>
+    <ul>
+        <li>
+            An applicant who has completed eighteen years of age is eligible to apply for a driving licence 
+            to drive a motor cycle without gear subject to 
+            the condition that the parent or guardian should furnish a declaration in the manner prescribed.
+        </li>
+        <li>
+            An applicant who has completed twenty years of age 
+            will be eligible for applying for a licence to drive a transport vehicle or HeavyMotorVehicles.
+        </li>
+    </ul>
+</div>
+    <a routerLink= 'createNew'> Create Application </a><br>
+   
+
+    <div>
+         My Application
+            <input id='applicationNumber'  type='number' [(ngModel)]='applicationNumber'> 
+            
+            <a [routerLink] = "['/details',applicationNumber]"> Submit </a>
+           
+        </div>
+        
+    
+    
+      
+
+
+

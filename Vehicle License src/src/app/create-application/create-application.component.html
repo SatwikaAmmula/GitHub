@@ -1,0 +1,141 @@
+
+<div class='appl'>
+
+    <h3 style="text-align:center"> Create Application</h3>
+
+    <form #applForm='ngForm' (submit)='createNewLL(applForm.value)'>
+                <div class='form-group'>
+                    <label for='appl.firstName'> First Name </label>
+                    <input id='firstName' class='form-control' type='text' ngModel name='firstName' #tname='ngModel'
+                        required>
+                </div>
+                <div *ngIf='tname.touched && tname.invalid' class='alert alert-danger'>
+                    First Name cannot be empty
+                </div>
+                <div class='form-group'>
+                    <label for='appl.lastName'> Last Name </label>
+                    <input id='lastName' class='form-control' type='text' ngModel name='lastName'  #tname='ngModel'
+                        required>
+                </div>
+                <div *ngIf='tname.touched && tname.invalid' class='alert alert-danger'>
+                    Last Name cannot be empty
+                </div>
+                <div class='form-group'>
+                    <label for='appl.applicationNumber'> Application Number </label>
+                    <input id='applicationNumber' class='form-control' type='number' ngModel name='applicationNumber' [(ngModel)]='applicationNumber' #tapplNo='ngModel'
+                        required>
+                </div>
+                <div *ngIf='tapplNo.touched && tapplNo.invalid' class='alert alert-danger'>
+                    Application Number must be given
+                </div>
+                <div class='form-group'>
+                    <label for='appl.gender'> Gender 
+                    <label class="radio-inline"><input id='gender'  type='radio' value='MALE' ngModel name='gender'> MALE</label>
+                    <label class="radio-inline"><input id='gender'  type='radio' value='FEMALE' ngModel name='gender'> FEMALE</label>
+                    <label class="radio-inline"><input id='gender'  type='radio' value='OTHER' ngModel name='gender'> OTHER</label>
+                </label>
+                </div>
+
+                <div class='form-group'>
+                    <label for='appl.dateOfBirth'> DateOfBirth</label>
+                    <input id='dateOfBirth' class='form-control' type='date' ngModel name='dateOfBirth' #tDOB='ngModel'
+                        required>
+                </div>
+                <div *ngIf='tDOB.touched && tDOB.invalid' class='alert alert-danger'>
+                    Date of Birth is required
+                </div>
+                
+                <div class='form-group'>
+                    <label for='appl.mobile'> Mobile Number </label>
+                    <input id='mobile' class='form-control' type='text' ngModel name='mobile' #tmobile='ngModel'
+                        required>
+                </div>
+                <div *ngIf='tmobile.touched && tmobile.invalid' class='alert alert-danger'>
+                    Mobile number cannot be empty
+                </div>
+                
+                <div class='form-group'>
+                    <label for='appl.nationality'> Nationality </label>
+                    <input id='nationality' class='form-control' type='text' ngModel name='nationality'
+                        #tnationality='ngModel' required>
+                </div>
+                <div *ngIf='tnationality.touched && tnationality.invalid' class='alert alert-danger'>
+                    Nationality is required
+                </div>
+
+                <div class='form-group'>
+                    <label for='appl.address'> Address </label>
+                    <input id='address' class='form-control' type='text' ngModel name='address' #taddress='ngModel'
+                        required minlength="5">
+                </div>
+                <div *ngIf='taddress.touched && taddress.invalid'>
+                    <div *ngIf='taddress.errors.required' class='alert alert-danger'>
+                        Please enter address
+                    </div>
+                    <div *ngIf='taddress.errors.minlength' class='alert alert-danger'>
+                        address should be minimum 5 letters
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label for='appl.vehicleType'>Vehicle Type 
+                    <label class="radio-inline">
+                        <input id='vehicleType' type='radio' value='MotorCycleWithoutGear' ngModel name='vehicleType'>MotorCycleWithoutGear
+                    </label>
+                    <label class="radio-inline">
+                        <input id='vehicleType' type='radio' value='LightMotorCycleWithGear' ngModel name='vehicleType'>LightMotorCycleWithGear
+                    </label>
+                    <label class="radio-inline">
+                        <input id='vehicleType' type='radio' value='HeavyMotorVehicles' ngModel name='vehicleType'>HeavyMotorVehicles</label>
+                    </label>
+                </div>
+                <div class='form-group'>
+                    <label for='appl.vehicleNumber'> Vehicle Number </label>
+                    <input id='vehicleNumber' class='form-control' type='text' ngModel name='vehicleNumber'
+                        #tvehNum='ngModel' required>
+                </div>
+                <div *ngIf='tvehNum.touched && tvehNum.invalid' class='alert alert-danger'>
+                    Vehicle number cannot be empty
+                </div>    
+        <div class='form-group'>
+            <label for='appl.type'>License Type<br>   
+            <label class="radio-inline">
+                <input id='type' type="radio" value='LL' ngModel name="type">Learner License 
+            </label>
+            <label class="radio-inline">
+                <input id='type' type="radio" value='DL' ngModel name="type">Driving License
+            </label>
+        </label>
+        </div>
+                
+                <div class='form-group'>
+                    <label for='appl.idProof'> ID proof </label>
+                    <input id='idProof' class='form-control' type='text' ngModel name='idProof' #tId='ngModel'
+                        required>
+                </div>
+                <div *ngIf='tId.touched && tId.invalid' class='alert alert-danger'>
+                    Id proof is required
+                </div>
+                
+                <div class='form-group'>
+                    <label for='appl.addressProof'> Address Proof </label>
+                    <input id='address' class='form-control'  type='text' ngModel name='addressProof' #taddproof='ngModel' required>
+                </div>
+                <div *ngIf='taddproof.touched && taddproof.invalid' class='alert alert-danger'>
+                    Address proof required
+                </div>
+
+               <!-- <div class='form-group'>
+                    <a [routerLink] = "['/createAppointment',appl.applicationNumber]" calss='btn btn-primary'> Appointment</a>
+                </div>-->
+                <button type='submit' class='btn btn-primary btn-block'>Submit</button>
+                
+    </form>
+
+
+    <div *ngIf='message != null' [ngClass]='msgClass' >
+        <a [routerLink] = "['/details',applicationNumber]"> {{message}}! Application Overview </a>
+
+        </div>
+    
+</div>
